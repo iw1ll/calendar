@@ -1,0 +1,9 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: work-calendar-frontend
+    restart: unless-stopped
+    ports:
+      - "8081:80"
