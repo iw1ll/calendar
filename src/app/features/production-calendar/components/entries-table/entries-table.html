@@ -1,0 +1,39 @@
+<p-table
+  [value]="rows()"
+  [loading]="loading()"
+  [showLoader]="false"
+  dataKey="date"
+  selectionMode="single"
+  [metaKeySelection]="false"
+  [selection]="selectedRow()"
+  (selectionChange)="onSelectionChange($event)"
+  sortField="date"
+  [sortOrder]="1"
+  [scrollable]="true"
+  scrollHeight="flex"
+  size="small"
+  class="entries-table"
+>
+  <ng-template #header>
+    <tr>
+      <th pSortableColumn="date">Дата <p-sorticon field="date" /></th>
+      <th pSortableColumn="type">Тип <p-sorticon field="type" /></th>
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-entry>
+    <tr
+      [pSelectableRow]="entry"
+      [attr.data-date]="entry.date"
+      title="Двойной клик — изменить, Delete — удалить"
+      (dblclick)="edit.emit(entry)"
+      (keydown.enter)="edit.emit(entry)"
+      (keydown.delete)="remove.emit(entry)"
+    >
+      <td>{{ entry.date | date: 'dd.MM.yyyy' }}</td>
+      <td>
+          {{ labelOf(entry.type) }}
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

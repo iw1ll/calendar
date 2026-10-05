@@ -1,0 +1,46 @@
+<app-calendar-toolbar
+  [years]="store.years"
+  [(year)]="store.year"
+  [loading]="store.loading()"
+  [canRemove]="store.selectedEntry() !== null"
+  (add)="openCreate()"
+  (remove)="confirmRemove()"
+/>
+
+<div class="progress">
+  @if (store.loading()) {
+    <p-progressbar mode="indeterminate" [style]="{ height: '2px' }" />
+  }
+</div>
+
+<div class="layout">
+  <section class="entries">
+    <app-entries-table
+      [entries]="store.entries()"
+      [loading]="store.loading()"
+      [(selectedDate)]="store.selectedDate"
+      (edit)="openEdit($event)"
+      (remove)="confirmRemove($event)"
+    />
+  </section>
+
+  <app-year-calendar
+    class="calendar"
+    [year]="store.year()"
+    [entryTypes]="store.entryTypes()"
+    [today]="store.today"
+    [(selectedDate)]="store.selectedDate"
+    (dateDblClick)="openForDate($event)"
+  />
+</div>
+
+<app-entry-dialog
+  [request]="dialogRequest()"
+  [year]="store.year()"
+  (save)="onSave($event)"
+  (closed)="dialogRequest.set(null)"
+/>
+
+<p-toast position="bottom-left" />
+<p-confirmdialog [style]="{ width: 'min(26rem, calc(100vw - 2rem))' }" />
+

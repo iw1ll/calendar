@@ -1,0 +1,58 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  border: 1px solid var(--p-content-border-color);
+  border-radius: 0.5rem;
+  background: var(--p-content-background);
+  overflow: hidden;
+}
+
+.progress {
+  height: 2px;
+}
+
+:host ::ng-deep .loading-bar {
+  display: block;
+  height: 2px;
+  border-radius: 0;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(18rem, 1fr) minmax(0, 1fr);
+  flex: 1;
+  min-height: 0;
+}
+
+.entries {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid var(--p-content-border-color);
+}
+
+.calendar {
+  min-height: 0;
+}
+
+@media (max-width: 900px) {
+  :host {
+    height: auto;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .entries {
+    height: 22rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--p-content-border-color);
+  }
+
+  .calendar {
+    overflow: visible;
+  }
+}

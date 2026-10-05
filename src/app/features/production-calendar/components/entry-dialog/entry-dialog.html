@@ -1,0 +1,65 @@
+<p-dialog
+  [header]="isEdit() ? 'Изменить запись' : 'Добавить запись'"
+  [visible]="visible()"
+  (visibleChange)="onVisibleChange($event)"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [dismissableMask]="true"
+  styleClass="entry-dialog"
+>
+  <form class="entry-form" novalidate (submit)="$event.preventDefault(); onSubmit()">
+    <div class="field">
+      <p-iftalabel>
+        <p-datepicker
+          inputId="entry-date"
+          [formField]="entryForm.date"
+          dateFormat="dd.mm.yy"
+          [showIcon]="true"
+          [showOnFocus]="false"
+          iconDisplay="input"
+          [minDate]="minDate()"
+          [maxDate]="maxDate()"
+          [firstDayOfWeek]="1"
+          [showOtherMonths]="true"
+          appendTo="body"
+          [invalid]="!!errorOf('date')"
+          fluid
+        />
+        <label for="entry-date">Дата <span class="required">*</span></label>
+      </p-iftalabel>
+      @if (errorOf('date'); as error) {
+        <small class="error">{{ error }}</small>
+      }
+    </div>
+
+    <div class="field">
+      <p-iftalabel>
+        <p-select
+          inputId="entry-type"
+          [formField]="entryForm.type"
+          [options]="typeOptions"
+          optionLabel="label"
+          optionValue="value"
+          appendTo="body"
+          [invalid]="!!errorOf('type')"
+          fluid
+        />
+        <label for="entry-type">Тип <span class="required">*</span></label>
+      </p-iftalabel>
+      @if (errorOf('type'); as error) {
+        <small class="error">{{ error }}</small>
+      }
+    </div>
+
+    <div class="actions">
+      <button pButton type="submit" size="small">
+        {{ isEdit() ? 'Сохранить' : 'Создать' }}
+      </button>
+
+      <button pButton type="button" severity="secondary" size="small" (click)="closed.emit()">
+        Отменить
+      </button>
+    </div>
+  </form>
+</p-dialog>

@@ -1,0 +1,39 @@
+<p-toolbar class="calendar-toolbar">
+  <ng-template #start>
+    <button pButton type="button" severity="secondary" text size="small" (click)="add.emit()">
+      <i class="pi pi-plus"></i>
+      Добавить
+    </button>
+
+    <span
+      pTooltip="Выберите запись в таблице"
+      [tooltipDisabled]="canRemove()"
+      tooltipPosition="bottom"
+    >
+      <button
+        pButton
+        type="button"
+        severity="danger"
+        text
+        size="small"
+        [disabled]="!canRemove()"
+        (click)="remove.emit()"
+      >
+        <i class="pi pi-trash"></i>
+        Удалить
+      </button>
+    </span>
+  </ng-template>
+
+  <ng-template #end>
+    <label class="year-label" for="year-select">Год: </label>
+    <p-select
+      inputId="year-select"
+      size="small"
+      [options]="years()"
+      [loading]="loading()"
+      [ngModel]="year()"
+      (ngModelChange)="year.set($event)"
+    />
+  </ng-template>
+</p-toolbar>

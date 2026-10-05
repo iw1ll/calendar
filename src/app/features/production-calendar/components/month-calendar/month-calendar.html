@@ -1,0 +1,27 @@
+<header class="month-header">
+  <h3 class="month-title">{{ title() }}</h3>
+  @if (isCurrentMonth()) {
+    <span class="month-today">Текущий месяц</span>
+  }
+</header>
+
+<p-datepicker
+  [inline]="true"
+  [defaultDate]="firstDay()"
+  [ngModel]="value()"
+  (ngModelChange)="onSelect($event)"
+  [showOtherMonths]="true"
+  [selectOtherMonths]="false"
+  [firstDayOfWeek]="1"
+  class="month-picker"
+>
+  <ng-template #date let-meta>
+    <span
+      [class]="dayClasses(meta)"
+      [attr.title]="dayHint(meta)"
+      (dblclick)="checkOtherMonth(meta)"
+    >
+      {{ meta.day }}
+    </span>
+  </ng-template>
+</p-datepicker>

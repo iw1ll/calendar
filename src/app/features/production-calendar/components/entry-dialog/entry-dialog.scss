@@ -1,0 +1,22 @@
+:host ::ng-deep .entry-dialog {
+  width: min(26rem, calc(100vw - 2rem));
+}
+
+.entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.required {
+  color: var(--day-nonworking);
+}
+
+.error {
+  color: var(--p-red-500);
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}

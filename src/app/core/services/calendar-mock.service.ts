@@ -12,8 +12,10 @@ export class CalendarMockService {
   /** Записи за год */
   getYear(year: number): Observable<CalendarYearResponse> {
     return this.http.get<CalendarYearResponse>(`mocks/calendar-${year}.json`).pipe(
-      map((res) => ({ year, entries: res.entries ?? [] })),
-      catchError(() => of({ year, entries: [] })),
+      catchError((error) => {
+        console.error(`Не удалось загрузить календарь за ${year}:`, error);
+        return of({ year, entries: [] });
+      }),
     );
   }
 }

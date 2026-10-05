@@ -1,0 +1,16 @@
+@use 'primeicons/primeicons.css';
+
+:root {
+  --day-working: #16a34a;
+  --day-nonworking: #ef4444;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--p-surface-50);
+  color: var(--p-text-color);
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 14px;
+}
+

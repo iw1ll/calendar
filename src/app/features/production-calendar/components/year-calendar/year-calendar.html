@@ -1,0 +1,10 @@
+@for (month of months; track month) {
+  <app-month-calendar
+    [year]="year()"
+    [month]="month"
+    [entryTypes]="entryTypes()"
+    [today]="today()"
+    [(selectedDate)]="selectedDate"
+    (dateDblClick)="dateDblClick.emit($event)"
+  />
+}
