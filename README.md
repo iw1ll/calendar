@@ -3,6 +3,10 @@
 Компонент для управления производственным календарём:
 Стек: Angular 22.2, PrimeNG 22
 
+# Готовый проект на GithubPages
+
+https://iw1ll.github.io/calendar/
+
 ## Запуск
 
 ```bash
